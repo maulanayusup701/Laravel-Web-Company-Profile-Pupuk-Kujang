@@ -32,6 +32,9 @@
 <script src="{{ asset('assets/front-end/assets/js/jquery.ajaxchimp.min.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ asset('assets/front-end/assets/js/custom.js') }}"></script>
+<!-- Sweet Alert -->
+<script src="{{ asset('assets/back-end/assets/extensions/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('assets/back-end/assets/static/js/pages/sweetalert2.js') }}"></script>
 </body>
 
 </html>

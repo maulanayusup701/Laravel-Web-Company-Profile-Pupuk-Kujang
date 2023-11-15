@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -17,6 +20,21 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof HttpException) {
+            $statusCode = $exception->getStatusCode();
+            if(!Auth()){
+                //front-end
+                return response()->view("front-end.errors.{$statusCode}", ['title' =>$statusCode], $statusCode);
+            }else{
+                //back-end
+                return response()->view("back-end.errors.{$statusCode}", ['title' =>$statusCode], $statusCode);
+            }
+        }
+        return parent::render($request, $exception);
+    }
 
     /**
      * Register the exception handling callbacks for the application.

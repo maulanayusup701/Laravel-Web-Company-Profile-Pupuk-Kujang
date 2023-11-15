@@ -43,6 +43,12 @@
     {{-- Trix-Editor --}}
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    
+    <link rel="stylesheet" href="{{ asset('assets/back-end/assets/extensions/sweetalert2/sweetalert2.min.css') }}">
+    
+        {{-- Jquery --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 

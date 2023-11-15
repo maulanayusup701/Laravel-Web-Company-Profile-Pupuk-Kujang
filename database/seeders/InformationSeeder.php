@@ -26,7 +26,11 @@ class InformationSeeder extends Seeder
             membutuhkan.
             74
             6. Memperlancar perekonomian negara dengan pihak luar karena PT Pupuk
-            Kujang pun mengekspor hasil dari pengolahan pupuk dan bahan-bahan kimia..'
+            Kujang pun mengekspor hasil dari pengolahan pupuk dan bahan-bahan kimia..',
+            'email' => 'info@KujangTatarPersada-Cikampek.com',
+            'no_telp' => '(0264) 838 6351',
+            'running_hour' => "Senin-Kamis : 08.00-16.00 WibJuma't : 08.00-16.30 Wib",
+            'address' => 'Jl. Jend. A. Yani No. 39, Cikampek 41373, Karawang Jawa Barat.'
         ]);
     }
 }

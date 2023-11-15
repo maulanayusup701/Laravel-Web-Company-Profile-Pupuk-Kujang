@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->text('about');
             $table->text('visi_misi');
+            $table->string('email');
+            $table->string('no_telp');
+            $table->string('running_hour');
+            $table->text('address');
             $table->timestamps();
         });
     }

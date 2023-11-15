@@ -2,7 +2,7 @@
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
         <a href="/" class="logo">
-            <h5>{{ $title }}</h5>
+            <h6>{{ $title }}</h6>
             <!-- <img src="assets/img/logo.png" alt="Logo"> -->
         </a>
     </div>
@@ -31,6 +31,7 @@
                         </li>
                     </ul>
                 </div>
+                {{-- <button class="btn btn-success">Login></button> --}}
             </nav>
         </div>
     </div>

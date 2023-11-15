@@ -13,20 +13,20 @@ class CarousellSeeder extends Seeder
     public function run(): void
     {
         Carousell::create([
-            'name' => 'carousell-1.jpg',
-            'image' => 'carousell-images/carousell-1.jpg',
+            'name' => 'carousell-1',
+            'image' => 'carousell-images/carousell-1.webp',
             'text' => 'Ahli Listrik Terampil Siap Membantu Anda',
         ]);
 
         Carousell::create([
-            'name' => 'carousell-2.jpg',
-            'image' => 'carousell-images/carousell-2.jpg',
+            'name' => 'carousell-2',
+            'image' => 'carousell-images/carousell-2.webp',
             'text' => 'Keandalan dan Kepuasan Pelanggan Prioritas Kami'
         ]);
 
         Carousell::create([
-            'name' => 'carousell-3.jpg',
-            'image' => 'carousell-images/carousell-3.jpg',
+            'name' => 'carousell-3',
+            'image' => 'carousell-images/carousell-3.webp',
             'text' => 'Perbaikan Profesional dengan Standar Keselamatan Tinggi',
         ]);
     }

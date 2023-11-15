@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Models\Message;
 use App\Models\Carousell;
 use App\Models\Information;
@@ -20,7 +19,6 @@ class LandingPageController extends Controller
             'title' => 'Pupuk Kujang',
             'carousell' => Carousell::all(),
             'info' => Information::all(),
-            'contact' => Contact::all()
         ]);
     }
 
@@ -33,8 +31,9 @@ class LandingPageController extends Controller
             'message' => 'required|min:3'
         ]);
         $data['short_message'] = Str::limit(strip_tags($request->message), 150);
+        $data['status_message_id'] = 1;
 
         Message::create($data);
-        return redirect('/')->with('success', 'Sendding');
+        return redirect('/')->with('toastr-success', 'Sent message successfully');
     }
 }

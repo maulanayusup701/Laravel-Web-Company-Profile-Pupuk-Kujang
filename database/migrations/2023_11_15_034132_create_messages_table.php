@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('short_message');
             $table->text('message');
+            $table->string('status_message_id');
             $table->timestamps();
         });
     }

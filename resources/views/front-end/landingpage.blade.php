@@ -3,7 +3,19 @@
     <!-- Start Navbar Area -->
     @include('front-end.layouts.partials.navbar')
     <!-- End Navbar Area -->
+    <style>
+        .hero-slider-item.bg-1 {
+            background-image: url(<?php echo 'Storage/' . $carousell[0]->image; ?>);
+        }
 
+        .hero-slider-item.bg-2 {
+            background-image: url(<?php echo 'Storage/' . $carousell[1]->image; ?>);
+        }
+
+        .hero-slider-item.bg-3 {
+            background-image: url(<?php echo 'Storage/' . $carousell[2]->image; ?>);
+        }
+    </style>
     <!-- Start Hero Slider Area -->
     <section class="hero-slider-area">
         <div class="hero-slider-wrap owl-theme owl-carousel" data-slider-id="1">
@@ -128,24 +140,24 @@
             <div class="row">
                 <div class="col-lg-4 col-md-5">
                     <div class="contact-info">
-                        @foreach ($contact as $contact)
+                        @foreach ($info as $info)
                             <h3>Running Hour</h3>
-                            <p>{!! $contact->running_hour !!}</p>
+                            <p>{!! $info->running_hour !!}</p>
                             <ul>
                                 <li>
                                     <i class="flaticon-phone-call"></i>
                                     Phone:
-                                    <a href="tel:+{{ $contact->no_telp }}">+{{ $contact->no_telp }}</a>
+                                    <a href="tel:+{{ $info->no_telp }}">+{{ $info->no_telp }}</a>
                                 </li>
                                 <li>
                                     <i class="flaticon-email-1"></i>
                                     Email:
-                                    <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
+                                    <a href="mailto:{{ $info->email }}">{{ $info->email }}</a>
                                 </li>
                                 <li>
                                     <i class="flaticon-pin"></i>
                                     Address:
-                                    <span>{{ $contact->address }}</span>
+                                    <span>{{ $info->address }}</span>
                                 </li>
                             </ul>
                         @endforeach
@@ -154,14 +166,6 @@
                 <div class="col-lg-8 col-md-7">
                     <div class="contact-wrap">
                         <h3>Online Support</h3>
-                        <div class="alert alert-success alert-dismissible fade show d-none" role="alert" id="success">
-                            <strong>Send Message Successfully!</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="failed">
-                            <strong>Send Message Failed!</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
                         <form action="/onlineSupport" method="post" class="php-email-form" id="form-online-support">
                             @csrf
                             <div class="row align-items-center">
@@ -232,38 +236,68 @@
     </section>
     {{-- end contact Area --}}
     <script>
-        $(document).ready(function() {
-            $('#form-online-support').submit(function(e) {
-                e.preventDefault();
-                var fullname = $('#fullname').val();
-                var email = $('#email').val();
-                var subject = $('#subject').val();
-                var message = $('#message').val();
-                var short_message = $('#short-message').val();
-                $.ajax({
-                    url: '/online-support',
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        fullname: fullname,
-                        email: email,
-                        subject: subject,
-                        message: message,
-                        short_message: short_message
-                    },
-                    success: function(response) {
-                        $('#form-online-support')[0].reset(); // Reset the form
-                        $('#success').removeClass('d-none');
-                        $('#failed').addClass('d-none');
-                    },
-                    error: function(xhr) {
-                        $('#failed').removeClass('d-none');
-                        $('#success').addClass('d-none');
-                    }
-                });
+    $(document).ready(function () {
+        $('#form-online-support').submit(function (e) {
+            e.preventDefault();
+            var fullname = $('#fullname').val();
+            var email = $('#email').val();
+            var subject = $('#subject').val();
+            var message = $('#message').val();
+            var short_message = $('#short-message').val();
+            $.ajax({
+                url: '/online-support',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    fullname: fullname,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    short_message: short_message
+                },
+                success: function (response) {
+                    $('#form-online-support')[0].reset();
+                    showNotification('success', 'Message sent successfully');
+                },
+                error: function (xhr) {
+                    showNotification('error', 'Failed to send message');
+                }
             });
         });
-    </script>
+
+        function showNotification(type, message) {
+            if (type === 'success') {
+                Swal.fire({
+                    toast: true,
+                    icon: 'success',
+                    title: message,
+                    position: 'bottom-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
+            } else if (type === 'error') {
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: message,
+                    position: 'bottom-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
+            }
+        }
+    });
+</script>
     @include('front-end.layouts.partials.script')
     {{-- Start Go Top Area --}}
     @include('front-end.layouts.partials.gotoarea')

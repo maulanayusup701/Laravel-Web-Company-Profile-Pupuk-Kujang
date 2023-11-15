@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LandingPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::controller(LandingPageController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::post('/online-support', 'storeOnlineSupport');
+});
